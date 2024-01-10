@@ -5,9 +5,9 @@
 #define ARR_LEN 10
 #define ARR_MAX 500
 
-extern void sswap(int*, int*);
-extern void pprintArr(int*);
-extern int* parrGen();
+extern void swap(int*, int*);
+extern void printArray(int*);
+extern int* arrayGenerate();
 
 
 #endif

@@ -26,7 +26,7 @@ void selectionSort(int* arr){
                 tmp_index = j;
             }
         }
-        sswap(arr+i, arr+tmp_index);
+        swap(arr+i, arr+tmp_index);
     }
     std::cout << "Selection Sort operated." << std::endl;
 }
@@ -55,7 +55,7 @@ void bubbleSort(int* arr){
     for (int i = 0; i < index - 1; i++){
 	for (int j = 0; j < index - i; j++){
 	    if(*(arr+j) > *(arr+j+1)){
-		sswap(arr+j, arr+j+1);
+		swap(arr+j, arr+j+1);
 		swapped = true;
 	    }
 	}
@@ -96,19 +96,82 @@ void insertionSort(int* arr){
 	    if (*(arr+j) >= *(arr+j-1)){
 		break;
 	    }else{
-		sswap(arr+j, arr+j-1);
+		swap(arr+j, arr+j-1);
 	    }
 	}
     }
     std::cout << "Insertion Sort operated." << std::endl;
 }
 
-int main(){
-    int* testArr = parrGen();
-    pprintArr(testArr);
-    //selectionSort(testArr);
-    //bubbleSort(testArr);
-    insertionSort(testArr);
-    pprintArr(testArr);
-    return 0;
+/* 
+ * Merge Sort Algorithm
+ *
+ * Merge Sort is one of the most popular sorting algorithms that is based 
+ * on the principle of Divide and Conquer Algorithm.
+ *
+ * Here, a problem is divided into multiple sub-problems. Each sub-problem 
+ * is solved individually. Finally, sub-problems are combined to form the 
+ * final solution.
+ * 
+ * Time Complexity: O(nlogn)
+ * Time Complexity Best: nlogn
+ * Space Complexity: n
+ */
+
+void merge(int* arr, int begin, int middle, int end){
+    int *tmp = new int[end+1];
+    int i = begin;
+    int j = middle+1;
+    int c = 0;
+
+    while((i <= middle) && (j <=end)){
+	//*(tmp+c++) = (*(arr+i) < *(arr+j)) ? *(arr+i++) : *(arr+j++);
+	if(*(arr+i) <= *(arr+j)){
+	    *(tmp+c) = *(arr+i);
+	    i++;
+	}else{
+	    *(tmp+c) = *(arr+j);
+	    j++;
+	}
+	c++;
+    }
+
+    while(i <= middle){
+	//*(tmp+c++) = *(arr+i++);
+	*(tmp + c) = *(arr + i);
+	i++;
+	c++;
+    }
+
+    while(j <= end){
+	//*(tmp+c++) = *(arr+j++);
+	*(tmp + c) = *(arr + j);
+        j++;
+        c++;
+    }
+    
+    c = 0;
+    while(begin+c <= end){
+	*(arr + begin + c) = *(tmp + c);
+	c++;
+    }
+    delete[] tmp;
 }
+
+
+void inMergeSort(int* arr, int begin, int end){
+    if(begin >= end){
+        return;
+    }
+    int middle = begin + ((end - begin) >> 1);
+    inMergeSort(arr, begin, middle);
+    inMergeSort(arr, middle + 1, end);
+    merge(arr, begin, middle, end);
+    
+}
+
+void mergeSort(int* arr){
+    inMergeSort(arr, 0, ARR_LEN - 1);
+    std::cout << "Merge Sort operated." << std::endl;
+} 
+

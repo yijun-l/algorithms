@@ -3,8 +3,6 @@
 #include <ctime>
 #include "uti.h"
 
-using namespace std;
-
 /* 
  * Function to swap two integers using bitwise XOR 
  *
@@ -14,7 +12,7 @@ using namespace std;
  *  a ^ b = b ^ a
  *  a ^ b ^ c = a ^ (b ^ c)
  */
-void sswap(int* a, int* b){
+void swap(int* a, int* b){
     if(a == b){
         return;
     }
@@ -25,15 +23,15 @@ void sswap(int* a, int* b){
 
 /* Function to print array values up to a specified index */
 void printArr(int* arr, int index){
-    cout << "Array Value: ";
+    std::cout << "Array Value: ";
     for(int i = 0; i < index; i++){
-        cout <<*(arr+i)<< " ";
+	std::cout <<*(arr+i)<< " ";
     }
-    cout << endl;
+    std::cout << std::endl;
 }
 
 /* Public printArr() function */
-void pprintArr(int* arr){
+void printArray(int* arr){
     printArr(arr, ARR_LEN);
 }
 
@@ -49,6 +47,6 @@ int* arrGen(int len, int max){
 }
 
 /* Public arrGen() function */
-int* parrGen(){
+int* arrayGenerate(){
     return arrGen(ARR_LEN, ARR_MAX);
 }
