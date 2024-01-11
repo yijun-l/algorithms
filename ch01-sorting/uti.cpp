@@ -46,6 +46,14 @@ int* arrGen(int len, int max){
     return arr;
 }
 
+int randomDigitGenerate(int begin, int end){
+    if(begin >= end){
+	return 0;
+    }
+    srand(static_cast<unsigned int>(time(nullptr)));
+    return begin + rand()%(end-begin+1);
+}
+
 /* Public arrGen() function */
 int* arrayGenerate(){
     return arrGen(ARR_LEN, ARR_MAX);

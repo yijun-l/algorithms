@@ -175,3 +175,76 @@ void mergeSort(int* arr){
     std::cout << "Merge Sort operated." << std::endl;
 } 
 
+/* 
+ * Quick Sort Algorithm
+ *
+ * Quicksort is a sorting algorithm based on the divide and conquer 
+ * approach where:
+ *
+ * 1. An array is divided into subarrays by selecting a pivot element 
+ * (element selected from the array).
+ * While dividing the array, the pivot element should be positioned 
+ * in such a way that elements less than pivot are kept on the left 
+ * side and elements greater than pivot are on the right side of the 
+ * pivot.
+ *
+ * 2. The left and right subarrays are also divided using the same 
+ * approach. This process continues until each subarray contains a 
+ * single element.
+ *
+ * 3. At this point, elements are already sorted. Finally, elements are 
+ * combined to form a sorted array.
+ * 
+ * Time Complexity: O(n^2)
+ * Time Complexity Best: nlogn
+ * Space Complexity: logn
+ */
+
+void divide(int* arr, int begin, int end, int pivot, int* rc){
+    int i = begin;	/* index */
+    int m = begin - 1;	/* point to the last element of <  pivot */
+    int n = end;	/* point to the first element of > pivot */
+
+    /* put pivot to the end */
+    swap(arr+pivot, arr+end);
+    n--;
+
+    while(i <= n){
+	if ( *(arr+i) > *(arr+end) ){
+	    swap(arr+i, arr+n);
+	    n--;
+	} else if ( *(arr+i) == *(arr+end) ){
+	    i++;
+	}else{
+	    m++;
+	    swap(arr+m, arr+i);
+	    i++;
+	}
+    }
+
+    n++;	/* move n to the last first element of > pivot */
+    swap(arr+n, arr+end);
+    n++;
+
+    *(rc+0) = m;
+    *(rc+1) = n;
+
+}
+
+void inQuickSort(int* arr, int begin, int end){
+    if (begin >= end){
+	return;
+    }
+    int pivot = randomDigitGenerate(begin, end);
+    int* rc = new int[2];
+    divide(arr, begin, end, pivot, rc);
+    inQuickSort(arr, begin, rc[0]);
+    inQuickSort(arr, rc[1], end);
+    delete[] rc;
+}
+
+void quickSort(int* arr){
+    inQuickSort(arr, 0, ARR_LEN - 1);
+    std::cout << "Quick Sort operated." << std::endl;
+} 
+
