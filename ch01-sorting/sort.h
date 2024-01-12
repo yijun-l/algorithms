@@ -6,6 +6,7 @@ extern void bubbleSort(int*);
 extern void insertionSort(int*);
 extern void mergeSort(int*);
 extern void quickSort(int*);
+extern void heapSort(int*);
 
 
 #endif

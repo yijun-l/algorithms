@@ -10,7 +10,8 @@ int main(){
     //bubbleSort(testArr);
     //insertionSort(testArr);
     //mergeSort(testArr);
-    quickSort(testArr);
+    //quickSort(testArr);
+    heapSort(testArr);
     printArray(testArr);
 
 
