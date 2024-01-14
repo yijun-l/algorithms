@@ -11,7 +11,8 @@ int main(){
     //insertionSort(testArr);
     //mergeSort(testArr);
     //quickSort(testArr);
-    heapSort(testArr);
+    //heapSort(testArr);
+    bucketSort(testArr);
     printArray(testArr);
 
 
